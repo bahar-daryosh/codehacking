@@ -34,5 +34,5 @@ Route::get('/admin',function(){
 });
 
 Route::resource('admin/users', 'AdminUsersController');
-Route::get('admin/create','AdminUsersController@create');
+Route::get('admin/create','AdminUsersController@create')->name('create');
 
