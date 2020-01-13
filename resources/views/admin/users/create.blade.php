@@ -7,7 +7,7 @@
 
     	{!! Form::open([ 'method' => 'POST','url' => 'admin/users', 'files' => true]) !!}
 
-               {{@csrf_field()}}
+               @csrf
 
     			<div class="form-group">
     				{!! Form::label('name', 'User name'); !!}

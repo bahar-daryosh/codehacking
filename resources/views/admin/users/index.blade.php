@@ -28,7 +28,7 @@
                  {{$id = $user->id}}
                  <tr>
                      <td>{{$user->id}}</td>
-                     <td><img height="50" src="{{$user->photo ? $user->photo->file : "user has no photo"}}" alt=""></td>
+                     <td><img src="{{$user->photo ? $user->photo->file : 'http://placeholde.it/50x50'}}" alt="" class="img-responsive img-rounded"></td>
                      <td><a href="{{route('users.edit',$user->id)}}">{{$user->name}}</a></td>
                      <td>{{$user->email}}
                      <td>{{$user->role->name}}</td>
