@@ -32,7 +32,10 @@ Route::get('/admin',function(){
 
     return view('admin.Index');
 });
+Route::group(['middleware'=>'admin'],function (){
 
-Route::resource('admin/users', 'AdminUsersController');
-Route::get('admin/create','AdminUsersController@create')->name('create');
+    Route::resource('admin/users', 'AdminUsersController');
+    Route::get('admin/create','AdminUsersController@create')->name('create');
+});
+
 

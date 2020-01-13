@@ -25,7 +25,7 @@
 
              @foreach($users as $user)
 
-                 {{$id = $user->id}}
+
                  <tr>
                      <td>{{$user->id}}</td>
                      <td><img src="{{$user->photo ? $user->photo->file : 'http://placeholde.it/50x50'}}" alt="" class="img-responsive img-rounded"></td>
