@@ -31,7 +31,7 @@
                      <td><img src="{{$user->photo ? $user->photo->file : 'http://placeholde.it/50x50'}}" alt="" class="img-responsive img-rounded"></td>
                      <td><a href="{{route('users.edit',$user->id)}}">{{$user->name}}</a></td>
                      <td>{{$user->email}}
-                     <td>{{$user->role->name}}</td>
+                     <td>{{$user->role ? $user->role->name : "guest"}}</td>
                      <td>{{$user->is_active == 1 ? 'Active' : 'Not Active'}}</td>
                      <td>{{$user->created_at->diffForHumans()}}</td>
                      <td>{{$user->updated_at->diffForHumans()}}</td>
