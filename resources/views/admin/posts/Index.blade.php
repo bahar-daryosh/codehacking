@@ -23,7 +23,7 @@
           <tr>
               <td>{{$post->id}}</td>
               <td><img src="{{$post->photo ? $post->photo->file : 'http://placeholde.it/50x50'}}" alt="" class="img-responsive img-rounded"></td>
-              <td>{{$post->user->name}}</td>
+              <td><a href="{{route('posts.edit',$post->id)}}">{{$post->user->name}}</a></td>
               <td>{{$post->category ? $post->category->name : "Un categorized"}}</td>
               <td>{{$post->title}}</td>
               <td>{{$post->body}}</td>
