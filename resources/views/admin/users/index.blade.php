@@ -4,7 +4,7 @@
 
 <h1>Users</h1>
 
-    <table class="table table-bordered">
+    <table class="table table-hover">
        <thead>
           <tr>
               <th>Id</th>
