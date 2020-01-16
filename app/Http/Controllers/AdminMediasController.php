@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Photo;
 use Illuminate\Http\Request;
 
-class AdminCategoriesController extends Controller
+class AdminMediasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class AdminCategoriesController extends Controller
     public function index()
     {
         //
-        $categories = Category::all();
-        return view('admin.categories.index',compact('categories'));
+        $photos = Photo::all();
+        return view('admin.media.index',compact('photos'));
     }
 
     /**
@@ -24,7 +24,11 @@ class AdminCategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
+    public function create()
+    {
+        //
+        return view('admin.media.create');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -35,8 +39,6 @@ class AdminCategoriesController extends Controller
     public function store(Request $request)
     {
         //
-        Category::create($request->all());
-        return redirect('admin/categories');
     }
 
     /**
@@ -59,12 +61,9 @@ class AdminCategoriesController extends Controller
     public function edit($id)
     {
         //
-        $category = Category::findOrFail($id);
-        $categories = Category::all();
-        return view('admin/categories/edit',compact('category','categories'));
     }
 
-    /**0
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -74,7 +73,6 @@ class AdminCategoriesController extends Controller
     public function update(Request $request, $id)
     {
         //
-
     }
 
     /**
@@ -86,8 +84,5 @@ class AdminCategoriesController extends Controller
     public function destroy($id)
     {
         //
-        $category = Category::findOrFail($id);
-        $category->delete();
-        return redirect('admin/categories');
     }
 }
