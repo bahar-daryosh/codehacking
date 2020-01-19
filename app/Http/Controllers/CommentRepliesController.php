@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Photo;
 use Illuminate\Http\Request;
 
-class AdminMediasController extends Controller
+class CommentRepliesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +14,6 @@ class AdminMediasController extends Controller
     public function index()
     {
         //
-        $photos = Photo::all();
-        return view('admin.media.index',compact('photos'));
     }
 
     /**
@@ -27,7 +24,6 @@ class AdminMediasController extends Controller
     public function create()
     {
         //
-        return view('admin.media.create');
     }
 
     /**
@@ -39,17 +35,6 @@ class AdminMediasController extends Controller
     public function store(Request $request)
     {
         //
-
-        $file = $request->file('file');
-
-        $name = time() . $file->getClientOriginalName();
-
-        $file->move('images',$name);
-
-        Photo::create(['file'=>$name]);
-
-
-
     }
 
     /**
@@ -95,11 +80,5 @@ class AdminMediasController extends Controller
     public function destroy($id)
     {
         //
-        $photo = Photo::findOrFail($id);
-        unlink(public_path().$photo->file);
-        $photo->delete();
-        return redirect('admin/media');
     }
 }
-
-

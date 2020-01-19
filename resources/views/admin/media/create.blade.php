@@ -1,8 +1,45 @@
 @extends('layouts.admin')
 
-@section('content')
+@section('styles')
 
-    <h1>Upload Media</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css">
 
 
 @endsection
+
+@section('content')
+
+
+    <h1>Upload Media</h1>
+
+	{!! Form::open([ 'method' => 'POST','url'=>'/admin/media', 'class'=>'dropzone']) !!}
+    @csrf
+
+
+
+
+    {!! Form::close() !!}
+
+
+
+
+
+
+
+
+
+@endsection
+@section('script')
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+
+
+@endsection
+
+
+
+
+
+
+
+

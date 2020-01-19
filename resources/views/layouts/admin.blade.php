@@ -16,6 +16,7 @@
 
     <link href="{{asset('/css/all.css')}}" rel="stylesheet">
 
+    @yield('styles')
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -144,7 +145,9 @@
                             <li>
                                 <a href="{{route('posts.create')}}">Create Post</a>
                             </li>
-
+                            <li>
+                                <a href="{{route('comments.index')}}">All Comments</a>
+                            </li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -350,7 +353,7 @@
 <script src="{{asset('/js/all.js')}}"></script>
 
 
-@yield('footer')
+@yield('script')
 
 
 

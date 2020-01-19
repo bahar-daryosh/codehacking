@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Photo;
+use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminMediasController extends Controller
+class PostCommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +16,7 @@ class AdminMediasController extends Controller
     public function index()
     {
         //
-        $photos = Photo::all();
-        return view('admin.media.index',compact('photos'));
+        return view('admin.comment.index');
     }
 
     /**
@@ -27,7 +27,6 @@ class AdminMediasController extends Controller
     public function create()
     {
         //
-        return view('admin.media.create');
     }
 
     /**
@@ -39,17 +38,20 @@ class AdminMediasController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
+        $data = [
+            'post_id'=> $request->post_id,
+            'author'=> $user->name,
+            'email'=>$user->email,
+            'photo'=>$user->photo->file,
+            'body'=>$request->body
 
-        $file = $request->file('file');
+        ];
+        Comment::create($request->all());
 
-        $name = time() . $file->getClientOriginalName();
+        $request->session()->flash('comment_message','Your message has been submitted and is waiting moderation');
 
-        $file->move('images',$name);
-
-        Photo::create(['file'=>$name]);
-
-
-
+        return redirect()->back();
     }
 
     /**
@@ -95,11 +97,5 @@ class AdminMediasController extends Controller
     public function destroy($id)
     {
         //
-        $photo = Photo::findOrFail($id);
-        unlink(public_path().$photo->file);
-        $photo->delete();
-        return redirect('admin/media');
     }
 }
-
-
