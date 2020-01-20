@@ -4,7 +4,7 @@
 
 
 
-    @if(count($comments)>0)
+    @if(count($replies)>0)
 
         <h1>Comments</h1>
 
