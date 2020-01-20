@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +17,9 @@ class PostCommentsController extends Controller
     public function index()
     {
         //
-        return view('admin.comment.index');
+        $comments = Comment::all();
+
+        return view('admin.comment.index',compact('comments'));
     }
 
     /**
@@ -47,7 +50,7 @@ class PostCommentsController extends Controller
             'body'=>$request->body
 
         ];
-        Comment::create($request->all());
+        Comment::create($data);
 
         $request->session()->flash('comment_message','Your message has been submitted and is waiting moderation');
 
@@ -63,6 +66,12 @@ class PostCommentsController extends Controller
     public function show($id)
     {
         //
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments;
+
+        return view('admin.comment.show',compact('comments'));
+
     }
 
     /**
@@ -86,6 +95,11 @@ class PostCommentsController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $comment = Comment::findOrfail($id);
+        $comment->update($request->all());
+        return redirect()->back();
+
     }
 
     /**
@@ -97,5 +111,9 @@ class PostCommentsController extends Controller
     public function destroy($id)
     {
         //
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return redirect()->back();
     }
 }

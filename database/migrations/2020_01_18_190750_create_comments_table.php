@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
             $table->string('email');
             $table->string('author');
             $table->text('body');
+            $table->string('photo');
             $table->timestamps();
 
 
