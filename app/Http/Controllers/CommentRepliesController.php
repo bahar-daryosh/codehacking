@@ -66,6 +66,11 @@ class CommentRepliesController extends Controller
     public function show($id)
     {
         //
+        $comment = Comment::findOrfail($id);
+
+        $replies = $comment->replies;
+
+        return view('admin.comment.reply.show',compact('replies'));
     }
 
     /**
@@ -89,6 +94,9 @@ class CommentRepliesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        CommentReply::findOrFail($id)->update($request->all());
+
+        return redirect()->back();
     }
 
     /**
@@ -100,5 +108,8 @@ class CommentRepliesController extends Controller
     public function destroy($id)
     {
         //
+        $reply = CommentReply::findOrFail($id);
+        $reply->delete();
+        return redirect()->back();
     }
 }

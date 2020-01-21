@@ -71,6 +71,7 @@
             <!-- Nested Comment -->
             @if(count($comment->replies))
                 @foreach($comment->replies as $reply)
+                    @if($reply->is_active == 1)
 
                         <div style="margin-top: 40px" class="media">
                             <a class="pull-left" href="#">
@@ -83,6 +84,8 @@
                                 <p>{{$reply->body}}</p>
                             </div>
                         </div>
+
+                    @endif
 
                 @endforeach
             <!-- End Nested Comment -->
